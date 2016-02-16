@@ -18,17 +18,13 @@ public class TennisGame2 implements TennisGame
     }
 
     public String getScore(){
-    	tiedScores();       
-        literalScorePlayer1WinningOverNone();
-        literalScorePlayer2WinningOverNone();
-        
-        player1IsWinningAndScoreLessThanOrEqual40();
-        player2IsWinningAndScoreLessThanOrEqual40();
+    	tiedScores();    
+    	literalScorePlayerWinningOtherNone();
+        literalOfDifferentScoresAndBelowOrEqualToForty();
         
         advantagePlayer1();
-        
         advantagePlayer2();
-        
+       
         gameForPlayer1();
         gameForPlayer2();
         return score;
@@ -66,30 +62,19 @@ public class TennisGame2 implements TennisGame
 		 
 	}
 
-	private void player2IsWinningAndScoreLessThanOrEqual40() {
-		if (player2Points>player1Points && player2Points < 4)
-        {
-            if (player2Points==2)
-                player2LiteralScore="Thirty";
-            if (player2Points==3)
-                player2LiteralScore="Forty";
-            if (player1Points==1)
-                player1LiteralScore="Fifteen";
-            if (player1Points==2)
-                player1LiteralScore="Thirty";
-            score = player1LiteralScore + "-" + player2LiteralScore;
-        }
-		 
-	}
+	
 
-	private void player1IsWinningAndScoreLessThanOrEqual40() {
-		if (player1Points>player2Points && player1Points < 4)
+	private void literalOfDifferentScoresAndBelowOrEqualToForty()
+	{
+		if (player1Points!=player2Points && player1Points < 4 && player2Points < 4)
         {
 			player1LiteralScore = literalScore(player1Points);
 			player2LiteralScore = literalScore(player2Points);
             score = player1LiteralScore + "-" + player2LiteralScore;
-        }	 
+        }
+			
 	}
+	
 
 	public String literalScore(int playerPoints){
 		String literal = "";
@@ -104,29 +89,25 @@ public class TennisGame2 implements TennisGame
         return literal;
 	}
 	
-	
-	
-	private void literalScorePlayer2WinningOverNone() {
-		if (player2Points > 0 && player1Points==0)
+	private void literalScorePlayerWinningOtherNone() {
+		if ((player1Points != player2Points)&&(player2Points ==0 || player1Points==0))
         {
-            player2LiteralScore = literalScore(player2Points);
-                        
-            player1LiteralScore = "Love";
+			if(player1Points>player2Points)
+			{
+				player1LiteralScore = literalScore(player1Points);
+                player2LiteralScore = "Love";
+			}
+			else
+			{
+				player2LiteralScore = literalScore(player2Points);
+                player1LiteralScore = "Love";
+			}	
             score = player1LiteralScore + "-" + player2LiteralScore;
         }
  	}
-
-	private void literalScorePlayer1WinningOverNone() {
-		if (player1Points > 0 && player2Points==0)
-        {
-			player1LiteralScore = literalScore(player1Points);
-
-            
-            player2LiteralScore = "Love";
-            score = player1LiteralScore + "-" + player2LiteralScore;
-        }
-		 
-	}
+	
+	
+	
 
 	private void tiedScores(){
 		if (player1Points == player2Points)
