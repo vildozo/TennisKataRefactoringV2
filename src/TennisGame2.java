@@ -20,11 +20,9 @@ public class TennisGame2 implements TennisGame
     public String getScore(){
     	tiedScores();    
     	literalScorePlayerWinningOtherNone();
-        literalOfDifferentScoresAndBelowOrEqualToForty();
-        
-        advantagePlayer1();
-        advantagePlayer2();
-       
+        literalOfDifferentScoresAndBelowOrEqualToForty();        
+        advantagePlayer();
+
         gameForPlayer1();
         gameForPlayer2();
         return score;
@@ -46,20 +44,15 @@ public class TennisGame2 implements TennisGame
 		
 	}
 
-	private void advantagePlayer2() {
-		if (player2Points > player1Points && player1Points >= 3)
-        {
-            score = "Advantage player2";
-        }
-		 
+	private boolean isAdvantage(int pointsPlayer1, int pointsPlayer2){
+		return (pointsPlayer2 > pointsPlayer1 && pointsPlayer1 >= 3);		
 	}
-
-	private void advantagePlayer1() {
-		if (player1Points > player2Points && player2Points >= 3)
-        {
-            score = "Advantage player1";
-        }
-		 
+	
+	private void advantagePlayer(){
+		if ( isAdvantage(player1Points, player2Points) )
+			score = "Advantage player2";
+		if ( isAdvantage(player2Points, player1Points) )
+			score = "Advantage player1";
 	}
 
 	
@@ -105,9 +98,6 @@ public class TennisGame2 implements TennisGame
             score = player1LiteralScore + "-" + player2LiteralScore;
         }
  	}
-	
-	
-	
 
 	private void tiedScores(){
 		if (player1Points == player2Points)
