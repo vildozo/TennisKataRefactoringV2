@@ -22,27 +22,21 @@ public class TennisGame2 implements TennisGame
     	literalScorePlayerWinningOtherNone();
         literalOfDifferentScoresAndBelowOrEqualToForty();        
         advantagePlayer();
-
-        gameForPlayer1();
-        gameForPlayer2();
+        gameForPlayer();
         return score;
     }
     
-	private void gameForPlayer2() {
-		if (player2Points>=4 && player1Points>=0 && (player2Points-player1Points)>=2)
-        {
-            score = "Win for player2";
-        }
-		
-	}
+    public boolean isGame(int pointsPlayer1, int pointsPlayer2){
+    	return (pointsPlayer2>=4 && pointsPlayer1>=0 && (pointsPlayer2-pointsPlayer1)>=2);	
+    }
+    
+    private void gameForPlayer(){
+    	if (isGame(player1Points,player2Points))
+    		score = "Win for player2";
+    	if (isGame(player2Points,player1Points))
+    		score = "Win for player1";
+    }
 
-	private void gameForPlayer1() {
-		if (player1Points>=4 && player2Points>=0 && (player1Points-player2Points)>=2)
-        {
-            score = "Win for player1";
-        }
-		
-	}
 
 	private boolean isAdvantage(int pointsPlayer1, int pointsPlayer2){
 		return (pointsPlayer2 > pointsPlayer1 && pointsPlayer1 >= 3);		
