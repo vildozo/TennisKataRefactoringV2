@@ -85,29 +85,32 @@ public class TennisGame2 implements TennisGame
 	private void player1IsWinningAndScoreLessThanOrEqual40() {
 		if (player1Points>player2Points && player1Points < 4)
         {
-            if (player1Points==2)
-                player1LiteralScore="Thirty";
-            if (player1Points==3)
-                player1LiteralScore="Forty";
-            if (player2Points==1)
-                player2LiteralScore="Fifteen";
-            if (player2Points==2)
-                player2LiteralScore="Thirty";
+			player1LiteralScore = literalScore(player1Points);
+			player2LiteralScore = literalScore(player2Points);
             score = player1LiteralScore + "-" + player2LiteralScore;
-        }
-		 
+        }	 
 	}
 
+	public String literalScore(int playerPoints){
+		String literal = "";
+		if (playerPoints==0)
+			literal = "Love";
+		if (playerPoints==1)
+			literal = "Fifteen";
+        if (playerPoints==2)
+        	literal = "Thirty";
+        if (playerPoints==3)
+        	literal = "Forty";
+        return literal;
+	}
+	
+	
+	
 	private void literalScorePlayer2WinningOverNone() {
 		if (player2Points > 0 && player1Points==0)
         {
-            if (player2Points==1)
-                player2LiteralScore = "Fifteen";
-            if (player2Points==2)
-                player2LiteralScore = "Thirty";
-            if (player2Points==3)
-                player2LiteralScore = "Forty";
-            
+            player2LiteralScore = literalScore(player2Points);
+                        
             player1LiteralScore = "Love";
             score = player1LiteralScore + "-" + player2LiteralScore;
         }
@@ -116,12 +119,8 @@ public class TennisGame2 implements TennisGame
 	private void literalScorePlayer1WinningOverNone() {
 		if (player1Points > 0 && player2Points==0)
         {
-            if (player1Points==1)
-                player1LiteralScore = "Fifteen";
-            if (player1Points==2)
-                player1LiteralScore = "Thirty";
-            if (player1Points==3)
-                player1LiteralScore = "Forty";
+			player1LiteralScore = literalScore(player1Points);
+
             
             player2LiteralScore = "Love";
             score = player1LiteralScore + "-" + player2LiteralScore;
@@ -134,12 +133,7 @@ public class TennisGame2 implements TennisGame
         {
 			if( player1Points < 4)
 			{
-	            if (player1Points==0)
-	                score = "Love";
-	            if (player1Points==1)
-	                score = "Fifteen";
-	            if (player1Points==2)
-	                score = "Thirty";
+	            score = literalScore(player1Points);
 	            score += "-All";
 	        }
 			if( player1Points >= 3)
