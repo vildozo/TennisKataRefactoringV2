@@ -81,7 +81,7 @@ public class TennisTest {
 
     @Test
     public void checkAllScoresTennisGame2() {
-        TennisGame2 game = new TennisGame2("player1", "player2");
+        TennisSinglesGame game = new TennisSinglesGame("player1", "player2");
         checkAllScores(game);
     }
 
